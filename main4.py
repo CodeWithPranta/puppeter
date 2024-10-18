@@ -63,8 +63,70 @@ except Exception as e:
     print(f"Error clicking 'Start New Booking' button: {e}")
 
 # Wait to ensure booking process starts
-time.sleep(30)  # Adjust as needed for the booking process
+time.sleep(10)  # Adjust as needed for the booking process
 
+# Open the dropdown for "Choose your Application Centre"
+application_centre_dropdown = tab.ele('#mat-select-0')  # Update this selector if necessary
+if application_centre_dropdown:
+    application_centre_dropdown.click()  # Open the dropdown
+    print("Application Centre dropdown opened.")
+
+    # Now, select the desired option (assuming it's the first option, adjust as needed)
+    option = tab.ele('Application Centre, Baku')  # Adjust based on actual value
+    if option:
+        option.click()  # Select the option
+        print("Application Centre selected.")
+    else:
+        print("Could not find the 'Application Centre, Baku' option.")
+else:
+    print("Could not find the Application Centre dropdown.")
+
+# Open the dropdown for "Choose your appointment category"
+appointment_category_dropdown = tab.ele('#mat-select-4')  # Update this selector if necessary
+if appointment_category_dropdown:
+    appointment_category_dropdown.click()  # Open the dropdown
+    print("Appointment category dropdown opened.")
+
+    # Select the desired option (e.g., "National D Visa")
+    option = tab.ele('National D Visa')  # Adjust based on actual value
+    if option:
+        option.click()  # Select the option
+        print("Appointment category selected.")
+    else:
+        print("Could not find the 'National D Visa' option.")
+else:
+    print("Could not find the appointment category dropdown.")
+
+# Open the dropdown for "Choose your sub-category"
+sub_category_dropdown = tab.ele('#mat-select-2')  # Update this selector if necessary
+if sub_category_dropdown:
+    sub_category_dropdown.click()  # Open the dropdown
+    print("Sub-category dropdown opened.")
+
+    # Select the desired option (e.g., "National Visa (D)")
+    option = tab.ele('National Visa (D)')  # Adjust based on actual value
+    if option:
+        option.click()  # Select the option
+        print("Sub-category selected.")
+    else:
+        print("Could not find the 'National Visa (D)' option.")
+else:
+    print("Could not find the sub-category dropdown.")
+
+# Check if the "no slots available" message is present
+no_slots_message = tab.ele('.alert.alert-info')
+if no_slots_message:
+    print("No appointment slots available.")
+else:
+    # If no message, click the "Continue" button
+    continue_button = tab.ele('Continue')  # Update based on the actual button selector
+    if continue_button:
+        continue_button.click()
+        print("Continue button clicked.")
+    else:
+        print("Continue button not found.")
+
+time.sleep(30)
 # Clean up
 tab.close()  # Use close() instead of quit()
 print("Browser closed.")
