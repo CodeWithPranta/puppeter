@@ -1,4 +1,4 @@
-const { connect } = require("puppeteer-real-browser");
+const { connect } = require("puppeteer");
 const fs = require('fs');
 require('dotenv').config(); // For environment variables
 
